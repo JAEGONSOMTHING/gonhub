@@ -37,10 +37,13 @@ public class UserService  {
 
         return userRepository.save(user).getId();
     }
+
     public String login(LoginRequest request){
-        User user = userRepository.findByUsername(request.getUsername()).orElseThrow(()-> new IllegalArgumentException(""));
+        User user = userRepository.findByUsername(request.getUsername()).orElseThrow(()-> new IllegalArgumentException("잘못된 아이디입니다"));
+        log.info("pw = {}", request.getPassword());
+
         if (!passwordEncoder.matches(request.getPassword(), user.getPassword())){
-            throw new IllegalArgumentException("");
+            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다");
         }
         List<String> role = new ArrayList<>();
         role.add(user.getRole().getAuthority());

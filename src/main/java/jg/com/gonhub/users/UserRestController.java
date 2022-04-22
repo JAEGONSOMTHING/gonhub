@@ -19,8 +19,9 @@ public class UserRestController {
     private final UserService userService;
     @GetMapping("/")
     public String hello(@CurrentUser User user){
+        String username = user == null? "anonymous" : user.getUsername();
 
-        return "hello";
+        return "hello" + username;
     }
 
     @PostMapping("/auth/signup")
