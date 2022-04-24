@@ -76,6 +76,7 @@ public class ReviewService {
             new IllegalArgumentException("잘못된 경로입니다");
         }
         reviewRepository.delete(review);
+
     }
 
 
