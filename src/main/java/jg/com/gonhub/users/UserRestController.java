@@ -1,16 +1,14 @@
 package jg.com.gonhub.users;
 
-import jg.com.gonhub.security.JwtTokenProvider;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Deque;
-import java.util.LinkedList;
+
 @Slf4j
 @RestController
 @RequiredArgsConstructor
@@ -35,6 +33,5 @@ public class UserRestController {
     public String login(@RequestBody LoginRequest request){
 
         return userService.login(request);
-
     }
 }

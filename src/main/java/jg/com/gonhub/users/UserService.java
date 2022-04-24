@@ -28,7 +28,7 @@ public class UserService  {
 
     public Long signUp(SignupRequest request) {
         if (userRepository.existsByUsername(request.getUsername())) {
-            return null;
+            throw new IllegalArgumentException("사용자 o");
         }
         User user = User.builder()
                 .username(request.getUsername())
@@ -40,7 +40,6 @@ public class UserService  {
 
     public String login(LoginRequest request){
         User user = userRepository.findByUsername(request.getUsername()).orElseThrow(()-> new IllegalArgumentException("잘못된 아이디입니다"));
-        log.info("pw = {}", request.getPassword());
 
         if (!passwordEncoder.matches(request.getPassword(), user.getPassword())){
             throw new IllegalArgumentException("비밀번호가 일치하지 않습니다");
